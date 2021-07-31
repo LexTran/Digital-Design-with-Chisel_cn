@@ -1,4 +1,4 @@
-# -Chisel-
+# Digital-Design-with-Chisel_cn
 本项目为使用Chisel设计数字电路一书的中文译本。
 
 本书原名《Digital Design with Chisel》，原作者为Martin Schoeberl。
