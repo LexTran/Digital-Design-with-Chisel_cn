@@ -137,5 +137,55 @@ $sbt eclipse
 
 ## 3.5访问源码和电子书功能
 
+​	本书开源在Github:chisel-book。书中所有的Chisel例子都包含在该仓库中。这些代码通过最近的Chisel版本编译，很多例子还包含了测试程序。我们收集了很多Chisel的例子在chisel-examples仓库里。如果你发现了错误或者笔误，可以提交pull reques你可以在Github记录一个issue来提供反馈或者按照老派做法发一封邮件给我们。
+
+​	本书有免费的PDF电子书，电子书版提供了更多的资源和Wikipedia入口。我们使用Wikiped来说明与本书直接相关的背景知识(如二进制数字系统)。电子书排版已经过优化，方便如ipad这样的便携式设备阅读。
+
+## 3.6更多读物
+
+​	以下列出了关于数字电路设计和Chisel更深层次的读物：
+
+- Digital Design: A Systems Approach，作者是William J.Dally和R. Curtis Hating。这是一本现代数字设计教科书。它有两个版本分别使用Verilog和VHDL作为硬件描述语言。
+
+​	Chisel官方文档和之后的文档都会更新到网上：
+
+- Chisel主页是开始安装和学习Chisel的地方。
+- Chisel Tutorial提供了一个含有测试和答案的小练习的热身项目。
+- Chisel Wiki包含了简短的Chisel用户手册和更多信息的链接。
+- Chisel Testers放在含有一个Wiki文档的仓库里。
+- Generator Bootcamp是一个基于Jupyter Notebook写的Chisel课程，专注于硬件生成器。
+- Chisel Style Guide，作者是Christopher Celio。
+- Chisel-lab涵盖了丹麦技术大学“Digital Electronics 2”课程的Chisel练习。
+
+## 3.7练习
+
+​	每个章节结尾都有实践的练习题。对于入门练习，我们通常使用一个FPGA板来点亮一个LED使其闪烁。第一步先将chisel-examples仓库从Github克隆下来。Hello World例子在hello-world文件夹里，是最小的一个项目。你可以在目录src/main/scala/Hello.scala下查看闪烁LED的Chisel代码。按照如下步骤编译此工程：
+
+```sh
+$ git clone https://github.com/schoeberl/chisel-examples.git
+$ cd chisel-examples/hello-world/
+$ make
+```
+
+​	在Chisel部分下载完成之后，程序会生成一个Verilog文件Hello.v。浏览此Verilog文件，你会看到电路包含两个输入clock和reset以及一个输出io_led。当你对比Verilog文件和Chisel模块时，你会发现在Chisel文件的声明中不含clock和reset。这些信号是隐式生成的，不需要处理这些底层细节在大部分设计中都相当方便。Chisel提供的寄存器如果需要，会自动连接clock和reset。
+
+​	下一步是建立FPGA工程文件，分配引脚然后编译Verilog代码，最后利用生成的bit文件烧录进FPGA。我们无法提供这些步骤的详细过程，请参考你的EDA工具手册。不过，例程仓库里包含了一些针对几个流行的FPGA的Quartus可用的工程在quartus文件夹中。如果仓库支持的板子包括你的FPGA，启动Quartus，打开工程，编译，烧录，然后你的LED会开始闪烁。
+
+​	恭喜！你已经成功地在FPGA上运行了你第一个Chisel电路！
+
+​	如果LED没有闪烁，检查reset的状态。在DE2-115配置中，reset的输入连接到SW0上。
+
+​	现在改变闪烁的频率然后重新运行一遍构建工程。闪烁的频率和闪烁的方式可以预示不同的状态。例如一个缓慢的闪烁信号代表一切正常，一个快速的闪烁信号代表报警。探索一下哪个频率能更好地表示这两种状态。
+
+​	如果你还没有一个FPGA板，你仍然可以运行LED闪烁的例子。你将会用到Chisel的模拟。为了防止太长的模拟实践，我们需要改变Chisel代码的时钟频率，从50000000改为50000。执行以下指令，模拟一个闪烁的LED。
+
+```sh
+$ sbt test
+```
+
+​	这会执行测试程序，运行时钟一百万次。闪烁的频率取决于模拟速度，也就是你的计算机速度。因此你看可能需要根据假设的时钟频率测试几次才能看到模拟的闪烁LED。
+
+# 
+
 
 
