@@ -66,7 +66,7 @@ false.B
 val logic = a & b | c
 ```
 
-<img src = "/Users/apple/Desktop/文献插图/Chisel数字系统设计/4.1.png" style = "width:350px">
+<img src = "./img/4.1.png" style = "width:350px">
 
 <center style="color:#c0c0c0">图4.1 表达式逻辑图</center>
 
@@ -151,7 +151,7 @@ val word = Cat(highByte, lowByte)
 
 ​	多选器是一个选择选项的电路。在最基本的形式中，它会在两条路径中选择一条。图4.2展示了这样一个二选一多选器，简称为mux。信号y最终表示信号a还是信号b取决的选择信号sel。
 
-<img src = "/Users/apple/Desktop/文献插图/Chisel数字系统设计/4.2.png" style = "width:250px">
+<img src = "./img/4.2.png" style = "width:250px">
 
 <center style = "color:#c0c0c0">图4.2 一个基本的二选一多选器</center>
 
